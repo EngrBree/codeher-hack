@@ -208,6 +208,48 @@ def create_app():
             'timestamp': datetime.now().isoformat()
         })
     
+    @app.route('/db-status')
+    def database_status():
+        """Check database tables status"""
+        try:
+            # Check if users table exists
+            db.session.execute('SELECT 1 FROM users LIMIT 1')
+            users_table = "exists"
+        except Exception as e:
+            users_table = "missing"
+        
+        try:
+            # Check if beneficiaries table exists
+            db.session.execute('SELECT 1 FROM beneficiaries LIMIT 1')
+            beneficiaries_table = "exists"
+        except Exception as e:
+            beneficiaries_table = "missing"
+        
+        try:
+            # Count users
+            user_count = db.session.execute('SELECT COUNT(*) FROM users').scalar()
+        except Exception as e:
+            user_count = 0
+        
+        try:
+            # Count beneficiaries
+            beneficiary_count = db.session.execute('SELECT COUNT(*) FROM beneficiaries').scalar()
+        except Exception as e:
+            beneficiary_count = 0
+        
+        return jsonify({
+            'database_ready': users_table == "exists" and beneficiaries_table == "exists",
+            'tables': {
+                'users': users_table,
+                'beneficiaries': beneficiaries_table
+            },
+            'counts': {
+                'users': user_count,
+                'beneficiaries': beneficiary_count
+            },
+            'timestamp': datetime.now().isoformat()
+        })
+    
     @app.route('/init-db')
     def initialize_database():
         """Initialize database tables and create predefined users"""
