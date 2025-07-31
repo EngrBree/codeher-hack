@@ -3,7 +3,6 @@ setuptools>=68.0
 pip>=25.2
 flask==2.3.2
 flask-sqlalchemy==3.0.3
-pymysql==1.0.2
 python-dotenv==1.0.0
 pyjwt==2.7.0
 Flask-Migrate==4.1.0

@@ -1,23 +1,19 @@
-from urllib.parse import quote_plus  # Add this import
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY')
+    SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
     
-    # Get raw credentials
-    MYSQL_USER = os.getenv('MYSQL_USER', 'root')
-    RAW_MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', '')  # Could contain @, #, etc.
-    MYSQL_HOST = os.getenv('MYSQL_HOST', '127.0.0.1')
-    MYSQL_DB = os.getenv('MYSQL_DB', 'heva_db')
+    # Use SQLite as default, but allow override with DATABASE_URL
+    DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///codeher.db')
     
-    # Encode the password for URL safety
-    SAFE_MYSQL_PASSWORD = quote_plus(RAW_MYSQL_PASSWORD)
+    # If DATABASE_URL is provided, use it; otherwise use SQLite
+    if DATABASE_URL.startswith('sqlite'):
+        SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    else:
+        # For MySQL/PostgreSQL, use the provided DATABASE_URL
+        SQLALCHEMY_DATABASE_URI = DATABASE_URL
     
-    # Use the encoded password
-    SQLALCHEMY_DATABASE_URI = (
-        f"mysql+pymysql://{MYSQL_USER}:{SAFE_MYSQL_PASSWORD}@{MYSQL_HOST}/{MYSQL_DB}"
-    )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
