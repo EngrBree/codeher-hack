@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}HEVA - Home{% endblock %}
+{% block body_class %}landing-page{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>HEVA Platform</h1>
+        <p class="tagline">Empowering vulnerable communities through data-driven solutions</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('login_page') }}" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+            <a href="{{ url_for('register_page') }}" class="btn btn-secondary">
+                <i class="fas fa-user-plus"></i> Register
+            </a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/hero-image.png') }}" alt="Community empowerment">
+    </div>
+</div>
+
+<div class="features-section">
+    <h2>Our Mission</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <i class="fas fa-users"></i>
+            <h3>Identify Vulnerabilities</h3>
+            <p>Document and track vulnerable individuals and communities</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Data-Driven Insights</h3>
+            <p>Make informed decisions with real-time analytics</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-hands-helping"></i>
+            <h3>Targeted Interventions</h3>
+            <p>Direct resources where they're needed most</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

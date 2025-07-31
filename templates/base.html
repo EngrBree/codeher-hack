@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HEVA Platform{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% block css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    {% if not request.path == url_for('home') %}
+    <header class="main-header">
+        <div class="container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <i class="fas fa-hands-helping"></i> HEVA
+            </a>
+            <nav class="main-nav">
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    {% block js %}{% endblock %}
+</body>
+</html>

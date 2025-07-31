@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% block title %}Manager Dashboard{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manager.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="manager-dashboard">
+    <header class="dashboard-header">
+        <div class="user-info">
+            <div class="avatar" id="userAvatar">M</div>
+            <div class="user-details">
+                <h2 id="welcomeMessage">Welcome, Manager</h2>
+                <p id="userRole">HEVA Manager | Loading...</p>
+            </div>
+        </div>
+        <nav class="dashboard-nav">
+            <ul>
+                <li class="active"><a href="#overview"><i class="fas fa-chart-line"></i> Overview</a></li>
+                <li><a href="#funding"><i class="fas fa-money-bill-wave"></i> Funding Management</a></li>
+                <li><a href="#strategic"><i class="fas fa-chess"></i> Strategic</a></li>
+                <li><a href="#reports"><i class="fas fa-file-alt"></i> Reports</a></li>
+                <li><a href="#operations"><i class="fas fa-cogs"></i> Operations</a></li>
+                <li><a href="#performance"><i class="fas fa-tachometer-alt"></i> Performance</a></li>
+                <li><a href="#profile"><i class="fas fa-user-cog"></i> Profile</a></li>
+            </ul>
+        </nav>
+        <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </header>
+
+    <main class="dashboard-content">
+        <section id="overview" class="dashboard-section active">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalBeneficiaries">0</div>
+                    <div class="stat-label">Total Beneficiaries</div>
+                    <div class="stat-change positive">+15% <i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="activePrograms">0</div>
+                    <div class="stat-label">Active Programs</div>
+                    <div class="stat-change positive">+3% <i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="fundUtilization">0%</div>
+                    <div class="stat-label">Fund Utilization</div>
+                    <div class="stat-change positive">+8% <i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="impactScore">0</div>
+                    <div class="stat-label">Impact Score</div>
+                    <div class="stat-change positive">+12% <i class="fas fa-arrow-up"></i></div>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3>Program Performance</h3>
+                    <canvas id="programPerformanceChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Regional Distribution</h3>
+                    <canvas id="regionalDistributionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h3>Strategic Actions</h3>
+                <div class="action-buttons">
+                    <button id="generateStrategicReportBtn" class="action-btn">
+                        <i class="fas fa-chart-bar"></i> Strategic Report
+                    </button>
+                    <button id="programAnalysisBtn" class="action-btn">
+                        <i class="fas fa-analytics"></i> Program Analysis
+                    </button>
+                    <button id="resourceAllocationBtn" class="action-btn">
+                        <i class="fas fa-balance-scale"></i> Resource Allocation
+                    </button>
+                    <button id="performanceReviewBtn" class="action-btn">
+                        <i class="fas fa-star"></i> Performance Review
+                    </button>
+                </div>
+            </div>
+
+            <div class="strategic-insights">
+                <h3>Strategic Insights</h3>
+                <div class="insights-grid" id="insightsGrid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="funding" class="dashboard-section">
+            <div class="funding-management">
+                <div class="funding-header">
+                    <h2><i class="fas fa-money-bill-wave"></i> Funding Management</h2>
+                    <div class="funding-stats">
+                        <div class="stat-card">
+                            <div class="stat-value" id="pendingFunding">0</div>
+                            <div class="stat-label">Pending Requests</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="approvedFunding">0</div>
+                            <div class="stat-label">Approved Today</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalFundsDisbursed">0</div>
+                            <div class="stat-label">Total Disbursed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="funding-content">
+                    <div class="funding-requests">
+                        <h3>Funding Requests</h3>
+                        <div class="requests-table-container">
+                            <table class="requests-table">
+                                <thead>
+                                    <tr>
+                                        <th>Beneficiary</th>
+                                        <th>Vulnerability Type</th>
+                                        <th>Amount Requested</th>
+                                        <th>Status</th>
+                                        <th>Date Requested</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="fundingRequestsTable">
+                                    <!-- Will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="funding-actions">
+                        <h3>Quick Actions</h3>
+                        <div class="action-buttons">
+                            <button id="approveAllBtn" class="action-btn">
+                                <i class="fas fa-check-double"></i> Approve All Pending
+                            </button>
+                            <button id="generateFundingReportBtn" class="action-btn">
+                                <i class="fas fa-file-export"></i> Funding Report
+                            </button>
+                            <button id="fundingAnalyticsBtn" class="action-btn">
+                                <i class="fas fa-chart-line"></i> Funding Analytics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategic" class="dashboard-section">
+            <!-- Strategic content will be loaded by JavaScript -->
+        </section>
+
+        <section id="reports" class="dashboard-section">
+            <!-- Reports content will be loaded by JavaScript -->
+        </section>
+
+        <section id="operations" class="dashboard-section">
+            <!-- Operations content will be loaded by JavaScript -->
+        </section>
+
+        <section id="performance" class="dashboard-section">
+            <!-- Performance content will be loaded by JavaScript -->
+        </section>
+
+        <section id="profile" class="dashboard-section">
+            <!-- Profile content will be loaded by JavaScript -->
+        </section>
+    </main>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/manager.js') }}"></script>
+{% endblock %} 

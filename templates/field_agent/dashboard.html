@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% block title %}Field Agent Dashboard{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/field_agent.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="field-agent-dashboard">
+    <header class="dashboard-header">
+        <div class="user-info">
+            <div class="avatar" id="userAvatar">U</div>
+            <div class="user-details">
+                <h2 id="welcomeMessage">Welcome, User</h2>
+                <p id="userRole">Field Agent | Loading...</p>
+            </div>
+        </div>
+        <nav class="dashboard-nav">
+            <ul>
+                <li class="active"><a href="#overview"><i class="fas fa-home"></i> Overview</a></li>
+                <li><a href="#beneficiaries"><i class="fas fa-users"></i> Beneficiaries</a></li>
+                <li><a href="#funding"><i class="fas fa-money-bill-wave"></i> Funding Tracking</a></li>
+                <li><a href="#assessments"><i class="fas fa-clipboard-check"></i> Assessments</a></li>
+                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="#profile"><i class="fas fa-user-cog"></i> Profile</a></li>
+            </ul>
+        </nav>
+        <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </header>
+
+    <main class="dashboard-content">
+        <section id="overview" class="dashboard-section active">
+            <div class="stats-container animate-on-load">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalBeneficiaries">0</div>
+                    <div class="stat-label">Total Beneficiaries</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="assessmentsThisMonth">0</div>
+                    <div class="stat-label">Assessments (This Month)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="highRiskCases">0</div>
+                    <div class="stat-label">High Risk Cases</div>
+                </div>
+            </div>
+
+            <div class="quick-actions animate-on-load">
+                <h3>Quick Actions</h3>
+                <div class="action-buttons">
+                    <button id="newBeneficiaryBtn" class="action-btn">
+                        <i class="fas fa-user-plus"></i> Add New Beneficiary
+                    </button>
+                    <button id="newAssessmentBtn" class="action-btn">
+                        <i class="fas fa-clipboard-list"></i> Start New Assessment
+                    </button>
+                    <button id="generateReportBtn" class="action-btn">
+                        <i class="fas fa-file-export"></i> Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <div class="recent-activity animate-on-load">
+                <h3>Recent Activity</h3>
+                <div class="activity-list" id="activityFeed">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="analytics-section animate-on-load">
+                <h3>Analytics Overview</h3>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h4>Gender Distribution</h4>
+                        <div class="chart-container" id="genderChart">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>Region Distribution</h4>
+                        <div class="chart-container" id="regionChart">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>Vulnerability Types</h4>
+                        <div class="chart-container" id="vulnerabilityChart">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beneficiaries" class="dashboard-section">
+            <!-- Beneficiaries content will be loaded by JavaScript -->
+        </section>
+
+        <section id="funding" class="dashboard-section">
+            <div class="funding-tracking animate-on-load">
+                <div class="funding-header">
+                    <h2><i class="fas fa-money-bill-wave"></i> Funding Tracking</h2>
+                    <div class="funding-stats">
+                        <div class="stat-card">
+                            <div class="stat-value" id="trackedBeneficiaries">0</div>
+                            <div class="stat-label">Tracked Beneficiaries</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="approvedFunds">0</div>
+                            <div class="stat-label">Approved Funds</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="pendingFunds">0</div>
+                            <div class="stat-label">Pending Funds</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="declinedFunds">0</div>
+                            <div class="stat-label">Declined Funds</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="funding-content">
+                    <div class="funding-actions">
+                        <button id="requestFundingBtn" class="btn btn-primary">
+                            <i class="fas fa-money-bill-wave"></i> Request Funding
+                        </button>
+                        <button id="generateFundingReportBtn" class="btn btn-secondary">
+                            <i class="fas fa-file-export"></i> Generate Report
+                        </button>
+                        <button id="viewFundingReportBtn" class="btn btn-info">
+                            <i class="fas fa-chart-bar"></i> View Report
+                        </button>
+                    </div>
+                    
+                    <div class="funding-tracking-table">
+                        <h3>Beneficiary Funding Status</h3>
+                        <div class="table-container">
+                            <table class="tracking-table">
+                                <thead>
+                                    <tr>
+                                        <th>Beneficiary</th>
+                                        <th>Vulnerability Type</th>
+                                        <th>Funding Status</th>
+                                        <th>Amount</th>
+                                        <th>Date Requested</th>
+                                        <th>Date Approved</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="fundingTrackingTable">
+                                    <!-- Will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Funding Report Modal -->
+                <div id="fundingReportModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3><i class="fas fa-chart-bar"></i> Funding Report</h3>
+                            <span class="close">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="report-summary">
+                                <h4>Summary</h4>
+                                <div class="summary-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Requests:</span>
+                                        <span class="stat-value" id="totalRequests">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Approved:</span>
+                                        <span class="stat-value" id="approvedCount">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Pending:</span>
+                                        <span class="stat-value" id="pendingCount">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Declined:</span>
+                                        <span class="stat-value" id="declinedCount">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Approved Amount:</span>
+                                        <span class="stat-value" id="totalApprovedAmount">KES 0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="report-sections">
+                                <div class="report-section">
+                                    <h4>Approved Beneficiaries</h4>
+                                    <div id="approvedBeneficiariesList" class="beneficiaries-list">
+                                        <!-- Will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                                
+                                <div class="report-section">
+                                    <h4>Pending Beneficiaries</h4>
+                                    <div id="pendingBeneficiariesList" class="beneficiaries-list">
+                                        <!-- Will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                                
+                                <div class="report-section">
+                                    <h4>Declined Beneficiaries</h4>
+                                    <div id="declinedBeneficiariesList" class="beneficiaries-list">
+                                        <!-- Will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section id="assessments" class="dashboard-section">
+            <!-- Assessments content will be loaded by JavaScript -->
+        </section>
+
+        <section id="reports" class="dashboard-section">
+            <!-- Reports content will be loaded by JavaScript -->
+        </section>
+
+        <section id="profile" class="dashboard-section">
+            <!-- Profile content will be loaded by JavaScript -->
+        </section>
+
+
+    </main>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/field_agent.js') }}"></script>
+{% endblock %}

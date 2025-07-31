@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block title %}Field Agent Registration{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/field_agent.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="field-agent-registration">
+    <div class="registration-header">
+        <img src="/static/images/heva-logo.png" alt="HEVA Logo" class="logo">
+        <h1>Field Agent Registration</h1>
+        <p>Register to start documenting vulnerable communities</p>
+    </div>
+    
+    <form id="fieldAgentRegisterForm" class="registration-form">
+        <div class="form-section personal-info">
+            <h2>Personal Information</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="county">County</label>
+                    <select id="county" name="county" required>
+                        <option value="">Select county</option>
+                        <optgroup label="Coast">
+                            <option value="001">Mombasa</option>
+                            <option value="002">Kwale</option>
+                            <option value="003">Kilifi</option>
+                            <option value="004">Tana River</option>
+                            <option value="005">Lamu</option>
+                            <option value="006">Taita Taveta</option>
+                        </optgroup>
+                        <optgroup label="North Eastern">
+                            <option value="007">Garissa</option>
+                            <option value="008">Wajir</option>
+                            <option value="009">Mandera</option>
+                        </optgroup>
+                        <optgroup label="Eastern">
+                            <option value="010">Marsabit</option>
+                            <option value="011">Isiolo</option>
+                            <option value="012">Meru</option>
+                            <option value="013">Tharaka Nithi</option>
+                            <option value="014">Embu</option>
+                            <option value="015">Kitui</option>
+                            <option value="016">Machakos</option>
+                            <option value="017">Makueni</option>
+                        </optgroup>
+                        <optgroup label="Central">
+                            <option value="018">Nyandarua</option>
+                            <option value="019">Nyeri</option>
+                            <option value="020">Kirinyaga</option>
+                            <option value="021">Murang'a</option>
+                            <option value="022">Kiambu</option>
+                        </optgroup>
+                        <optgroup label="Rift Valley">
+                            <option value="023">Turkana</option>
+                            <option value="024">West Pokot</option>
+                            <option value="025">Samburu</option>
+                            <option value="026">Trans Nzoia</option>
+                            <option value="027">Uasin Gishu</option>
+                            <option value="028">Elgeyo Marakwet</option>
+                            <option value="029">Nandi</option>
+                            <option value="030">Baringo</option>
+                            <option value="031">Laikipia</option>
+                            <option value="032">Nakuru</option>
+                            <option value="033">Narok</option>
+                            <option value="034">Kajiado</option>
+                            <option value="035">Kericho</option>
+                            <option value="036">Bomet</option>
+                        </optgroup>
+                        <optgroup label="Western">
+                            <option value="037">Kakamega</option>
+                            <option value="038">Vihiga</option>
+                            <option value="039">Bungoma</option>
+                            <option value="040">Busia</option>
+                        </optgroup>
+                        <optgroup label="Nyanza">
+                            <option value="041">Siaya</option>
+                            <option value="042">Kisumu</option>
+                            <option value="043">Homa Bay</option>
+                            <option value="044">Migori</option>
+                            <option value="045">Kisii</option>
+                            <option value="046">Nyamira</option>
+                        </optgroup>
+                        <optgroup label="Nairobi">
+                            <option value="047">Nairobi</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section account-info">
+            <h2>Account Credentials</h2>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="password-strength"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+            </div>
+            
+            <div class="form-group terms">
+                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Complete Registration</button>
+        
+        <div class="login-link">
+            Already registered? <a href="/login">Sign in here</a>
+        </div>
+    </form>
+    
+    <div id="registrationMessage" class="message-box"></div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/field_agent.js') }}"></script>
+{% endblock %}
