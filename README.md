@@ -1,6 +1,18 @@
-# HEVA (Humanitarian Empowerment & Vulnerability Assessment) Platform
+HEVA (Humanitarian Empowerment & Vulnerability Assessment) Platform
+🌐 Live System: https://codeher-hack.onrender.com
 
-## 🎯 Project Pitch
+🔐 Test Login Credentials
+
+Role	Username	Password
+Field Agent	jay	Hello@12b
+Manager	manager@heva	ManagerPass456!
+Admin	admin@heva	SecureAdmin123!
+Analyst	analyst@heva	AnalystAccess789!
+
+⚠️ Use these accounts to explore different user roles and their dashboards.
+
+
+
 
 ### Overview
 HEVA is a comprehensive humanitarian aid management platform designed to streamline the process of identifying, assessing, and supporting vulnerable populations in Kenya. The platform addresses critical gaps in humanitarian aid distribution by providing real-time data analytics, secure funding tracking, and multi-stakeholder collaboration tools.
@@ -33,7 +45,7 @@ HEVA is a comprehensive humanitarian aid management platform designed to streaml
 ### Prerequisites
 - Python 3.8+
 - MySQL 8.0+
-- Node.js (for development)
+  
 
 ### Installation
 
@@ -354,6 +366,7 @@ For support and questions:
 - 🔄 Advanced analytics
 - 🔄 API integrations
 - 🔄 Multi-language support
+  
 
 ### Phase 3 (Future)
 - 📋 AI-powered assessments
