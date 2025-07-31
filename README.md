@@ -3,11 +3,11 @@ HEVA (Humanitarian Empowerment & Vulnerability Assessment) Platform
 
 🔐 Test Login Credentials
 
-Role	Username	Password
-Field Agent	jay	Hello@12b
-Manager	manager@heva	ManagerPass456!
-Admin	admin@heva	SecureAdmin123!
-Analyst	analyst@heva	AnalystAccess789!
+-#Role	#Username	#Password
+-Field Agent	jay	Hello@12b
+-Manager	manager@heva	ManagerPass456!
+--Admin	admin@heva	SecureAdmin123!
+-Analyst	analyst@heva	AnalystAccess789!
 
 ⚠️ Use these accounts to explore different user roles and their dashboards.
 
