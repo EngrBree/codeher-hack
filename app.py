@@ -208,32 +208,41 @@ def create_app():
             'timestamp': datetime.now().isoformat()
         })
     
+    @app.route('/init-db')
+    def initialize_database():
+        """Initialize database tables and create predefined users"""
+        try:
+            app.logger.info("Initializing database...")
+            
+            # Create all tables (only for initial setup)
+            db.create_all()
+            app.logger.info("✅ Database tables created successfully!")
+            
+            # Create predefined users
+            app.logger.info("Creating predefined users...")
+            if User.create_predefined_users():
+                app.logger.info("✅ Predefined users created successfully!")
+            else:
+                app.logger.warning("⚠️ Some predefined users may already exist or failed to create")
+                
+            return jsonify({
+                'status': 'success',
+                'message': 'Database initialized successfully',
+                'timestamp': datetime.now().isoformat()
+            })
+            
+        except Exception as e:
+            app.logger.error(f"❌ Database initialization failed: {e}")
+            return jsonify({
+                'status': 'error',
+                'message': f'Database initialization failed: {str(e)}',
+                'timestamp': datetime.now().isoformat()
+            }), 500
+    
     return app
 
 # Create the app instance for gunicorn
 app = create_app()
-
-# Initialize database after app creation (but don't crash if it fails)
-@app.before_first_request
-def initialize_database():
-    """Initialize database tables and create predefined users"""
-    try:
-        app.logger.info("Initializing database...")
-        
-        # Create all tables (only for initial setup)
-        db.create_all()
-        app.logger.info("✅ Database tables created successfully!")
-        
-        # Create predefined users
-        app.logger.info("Creating predefined users...")
-        if User.create_predefined_users():
-            app.logger.info("✅ Predefined users created successfully!")
-        else:
-            app.logger.warning("⚠️ Some predefined users may already exist or failed to create")
-            
-    except Exception as e:
-        app.logger.error(f"❌ Database initialization failed: {e}")
-        app.logger.warning("⚠️ Application will continue without database initialization")
 
 if __name__ == '__main__':
     app.logger.info("Running Flask app...")
