@@ -5,6 +5,7 @@ import jwt
 import datetime
 from functools import wraps
 from sqlalchemy.exc import OperationalError
+from sqlalchemy import text
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -12,7 +13,7 @@ def check_database_ready():
     """Check if database tables exist"""
     try:
         # Try to query the users table
-        db.session.execute('SELECT 1 FROM users LIMIT 1')
+        db.session.execute(text('SELECT 1 FROM users LIMIT 1'))
         return True
     except OperationalError:
         return False

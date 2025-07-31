@@ -17,6 +17,7 @@ from routes.admin import admin_bp
 from routes.manager import manager_bp
 from pdf_generator import PDFGenerator
 from kenya_counties import KENYA_COUNTIES
+from sqlalchemy import text
 
 
 
@@ -196,7 +197,7 @@ def create_app():
         """Health check endpoint"""
         try:
             # Test database connection
-            db.session.execute('SELECT 1')
+            db.session.execute(text('SELECT 1'))
             db_status = "connected"
         except Exception as e:
             app.logger.warning(f"Database connection failed: {e}")
@@ -213,27 +214,27 @@ def create_app():
         """Check database tables status"""
         try:
             # Check if users table exists
-            db.session.execute('SELECT 1 FROM users LIMIT 1')
+            db.session.execute(text('SELECT 1 FROM users LIMIT 1'))
             users_table = "exists"
         except Exception as e:
             users_table = "missing"
         
         try:
             # Check if beneficiaries table exists
-            db.session.execute('SELECT 1 FROM beneficiaries LIMIT 1')
+            db.session.execute(text('SELECT 1 FROM beneficiaries LIMIT 1'))
             beneficiaries_table = "exists"
         except Exception as e:
             beneficiaries_table = "missing"
         
         try:
             # Count users
-            user_count = db.session.execute('SELECT COUNT(*) FROM users').scalar()
+            user_count = db.session.execute(text('SELECT COUNT(*) FROM users')).scalar()
         except Exception as e:
             user_count = 0
         
         try:
             # Count beneficiaries
-            beneficiary_count = db.session.execute('SELECT COUNT(*) FROM beneficiaries').scalar()
+            beneficiary_count = db.session.execute(text('SELECT COUNT(*) FROM beneficiaries')).scalar()
         except Exception as e:
             beneficiary_count = 0
         
