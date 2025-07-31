@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}HEVA - Home{% endblock %}
+{% block title %}HEVA - Community Empowerment Platform{% endblock %}
 {% block body_class %}landing-page{% endblock %}
 
 {% block css %}
@@ -8,41 +8,185 @@
 {% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
 <div class="hero-section">
     <div class="hero-content">
-        <h1>HEVA Platform</h1>
-        <p class="tagline">Empowering vulnerable communities through data-driven solutions</p>
+        <div class="hero-logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="HEVA Logo" class="hero-logo-img">
+        </div>
+        <h1>Empowering Communities Together</h1>
+        <p class="tagline">HEVA - A comprehensive platform for identifying, supporting, and empowering vulnerable communities through data-driven solutions and targeted interventions.</p>
         <div class="cta-buttons">
             <a href="{{ url_for('login_page') }}" class="btn btn-primary">
-                <i class="fas fa-sign-in-alt"></i> Login
+                <i class="fas fa-sign-in-alt"></i> Get Started
             </a>
             <a href="{{ url_for('register_page') }}" class="btn btn-secondary">
-                <i class="fas fa-user-plus"></i> Register
+                <i class="fas fa-user-plus"></i> Join Our Mission
             </a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Communities Served</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10K+</span>
+                <span class="stat-label">Lives Impacted</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">95%</span>
+                <span class="stat-label">Success Rate</span>
+            </div>
         </div>
     </div>
     <div class="hero-image">
-        <img src="{{ url_for('static', filename='images/hero-image.png') }}" alt="Community empowerment">
+        <div class="hero-visual">
+            <div class="community-circle">
+                <div class="person person-1"></div>
+                <div class="person person-2"></div>
+                <div class="person person-3"></div>
+                <div class="person person-4"></div>
+                <div class="person person-5"></div>
+                <div class="person person-6"></div>
+                <div class="person person-7"></div>
+                <div class="person person-8"></div>
+                <div class="center-empowerment"></div>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Features Section -->
 <div class="features-section">
-    <h2>Our Mission</h2>
-    <div class="features-grid">
-        <div class="feature-card">
-            <i class="fas fa-users"></i>
-            <h3>Identify Vulnerabilities</h3>
-            <p>Document and track vulnerable individuals and communities</p>
+    <div class="container">
+        <h2>Our Mission & Impact</h2>
+        <p class="section-subtitle">Transforming vulnerable communities through comprehensive data-driven solutions</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Identify Vulnerabilities</h3>
+                <p>Comprehensive assessment and documentation of vulnerable individuals and communities across Kenya</p>
+                <ul class="feature-list">
+                    <li>Multi-dimensional vulnerability scoring</li>
+                    <li>Real-time community mapping</li>
+                    <li>Risk assessment algorithms</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Data-Driven Insights</h3>
+                <p>Make informed decisions with real-time analytics and comprehensive reporting</p>
+                <ul class="feature-list">
+                    <li>Real-time dashboard analytics</li>
+                    <li>Predictive modeling</li>
+                    <li>Impact measurement tools</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Targeted Interventions</h3>
+                <p>Direct resources and support where they're needed most with precision targeting</p>
+                <ul class="feature-list">
+                    <li>Smart resource allocation</li>
+                    <li>Progress tracking</li>
+                    <li>Outcome measurement</li>
+                </ul>
+            </div>
         </div>
-        <div class="feature-card">
-            <i class="fas fa-chart-line"></i>
-            <h3>Data-Driven Insights</h3>
-            <p>Make informed decisions with real-time analytics</p>
+    </div>
+</div>
+
+<!-- About Section -->
+<div class="about-section" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About HEVA</h2>
+                <p class="about-subtitle">Building stronger communities through technology and compassion</p>
+                <p>HEVA (Humanitarian Empowerment and Vulnerability Assessment) is a comprehensive platform designed to identify, support, and empower vulnerable communities across Kenya. Our mission is to bridge the gap between vulnerable populations and the resources they need to thrive.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure & Confidential</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Mobile-First Design</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-globe"></i>
+                        <span>Nationwide Coverage</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="impact-stats">
+                    <div class="impact-stat">
+                        <div class="impact-number">47</div>
+                        <div class="impact-label">Counties Covered</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">15+</div>
+                        <div class="impact-label">Partner Organizations</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">24/7</div>
+                        <div class="impact-label">Support Available</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-            <i class="fas fa-hands-helping"></i>
-            <h3>Targeted Interventions</h3>
-            <p>Direct resources where they're needed most</p>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="how-it-works-section">
+    <div class="container">
+        <h2>How It Works</h2>
+        <p class="section-subtitle">Simple steps to make a big impact</p>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Register & Access</h3>
+                <p>Field agents register and gain access to the platform with secure authentication</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Assess & Document</h3>
+                <p>Conduct comprehensive assessments of vulnerable individuals and communities</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Analyze & Plan</h3>
+                <p>Use data-driven insights to plan targeted interventions and resource allocation</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Implement & Monitor</h3>
+                <p>Execute interventions and track progress with real-time monitoring</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section">
+    <div class="container">
+        <h2>Ready to Make a Difference?</h2>
+        <p>Join thousands of field agents already making an impact in their communities</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('register_page') }}" class="btn btn-primary btn-large">
+                <i class="fas fa-user-plus"></i> Start Your Journey
+            </a>
+            <a href="{{ url_for('login_page') }}" class="btn btn-outline btn-large">
+                <i class="fas fa-sign-in-alt"></i> Access Platform
+            </a>
         </div>
     </div>
 </div>
