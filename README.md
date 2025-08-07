@@ -1,6 +1,8 @@
 # HEVA (Humanitarian Empowerment & Vulnerability Assessment) Platform
 
+
 🌐 **Live System:** [https://codeher-hack.onrender.com](https://codeher-hack.onrender.com)
+# TO INITIALIZE THE DATABASE; IN A NEW TAB PASTE THIS  (https://codeher-hack.onrender.com/init-db)
 
 🔐 **Test Login Credentials**  
 | Role        | Username        | Password             |
